@@ -1,15 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{html,js}s",
-    "./src/components/**/*.{html,js}s",
-    "./src/pages/**/*.{html,js}s",
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
+      },
+      fontWeight: {
+        light: 300,
+        normal: 400,
+        medium: 500,
+        semibold: 600,
+        bold: 700,
+      },
+      backgroundImage: {
+        'blue-gradient-button': 'linear-gradient(79.69deg, #1D4ED8 -0.64%, #5AD7FE 107.84%)',
+      },
+    },
   },
   plugins: [],
 }

@@ -1,8 +1,11 @@
+import { GenixLogoTitle } from "../GenixLogoTitle/GenixLogoTitle";
 import "./LandingPageTopBar.css"
 export function LandingPageTopBar() {
   return (
-    <div className="landing-top-bar">
-        <img className="landing-top-bar-icon" src = "GenixLogo.svg"  alt = "Genix Logo" />
+    <div className="w-[80%] flex justify-start">
+      <div className="flex justify-center ">
+        <GenixLogoTitle/>
+      </div>
     </div>
   );
 }
