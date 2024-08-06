@@ -3,7 +3,7 @@ import { LandingPageTopBar } from "../../components/LandingPageTopBar/LandingPag
 export function Singup() {
   return (
     <>
-    <LandingPageTopBar/>
+      <LandingPageTopBar/>
     </>
   );
 }
