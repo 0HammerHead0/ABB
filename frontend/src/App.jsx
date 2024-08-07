@@ -7,6 +7,7 @@ import { Home } from "./pages/Home/Home";
 import { SignupSuccessfull } from "./components/SignupSuccessfull/SignupSuccessfull.jsx";
 import { ProductPage } from "./pages/ProductPage/ProductPage.jsx";
 import { SubmitBidding } from "./components/SubmitBidding/SubmitBidding.jsx";
+import { MyBids } from "./pages/MyBIds/MyBids.jsx";
 function App() {
   return (
     <>
@@ -18,6 +19,8 @@ function App() {
           <Route path="/signup-successfull" element={<SignupSuccessfull />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/submitBid/:id" element={<SubmitBidding/>}/>
+          <Route path="/my-bids" element={<MyBids/>} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </Router>
     </>

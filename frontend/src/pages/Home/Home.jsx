@@ -51,11 +51,11 @@ export function Home() {
     }, []);
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center">
         <Navbar className="fixed" loggedIn={loggedIn} user={user}/>
-        {!loggedIn && <img src="home.svg" className="w-[80%] h-[700px] mt-2" />}
       </div>
-      <div className="flex flex-col justify-center items-left w-[80%] font-manrope">
+      <div className="flex flex-col justify-center items-left w-[80%] font-manrope mt-[100px]">
+        {!loggedIn && <img src="home.svg" className="w-full h-[700px] mt-2" />}
         <div className="flex justify-start my-3 items-center">
           <h1 className="text-[40px] mr-2 font-bold">
             {loggedIn ? 'Welcome' : 'Explore'}

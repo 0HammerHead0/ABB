@@ -3,7 +3,7 @@ import { BidModel } from "../models/Bid.js";
 import { AuctionItemModel } from "../models/AuctionItem.js";
 import { verifyToken } from "./user.js"; // Import the verifyToken middleware
 import { UserModel } from "../models/User.js";
-
+import jwt from "jsonwebtoken";
 const router = express.Router();
 
 // Place a bid
@@ -99,19 +99,29 @@ router.delete("/:id", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/user-bids/:userId", async (req, res) => {
-  const { userId } = req.params;
-    try {
-        const user = await UserModel.findById(userId);
-        if (!user) return res.status(404).json({ message: "User not found" });
-    
-        const bids = await BidModel.find({ bidder: userId }).populate(
-        "auctionItem"
-        );
-        res.status(200).json(bids);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+router.get("/user-bids", async (req, res) => {
+  console.log(req.headers);
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  let userId = null;
+  jwt.verify(token, "secret", (err, decoded) => {
+    if (err) return res.sendStatus(403);
+    userId = decoded._id;
+  });
+  if (!userId) return res.status(403).json({ message: "Forbidden" });
+
+  console.log(userId);
+  try {
+    const user = await UserModel.findById(userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const bids = await BidModel.find({ bidder: userId }).populate("auctionItem");
+    res.status(200).json(bids);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
+
 
 export default router;
