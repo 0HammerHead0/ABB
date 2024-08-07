@@ -50,7 +50,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 // Get bids for an auction item
-router.get("/:auctionItemId", async (req, res) => {
+router.get("/auction-item/:auctionItemId", async (req, res) => {
   const { auctionItemId } = req.params;
 
   try {

@@ -1,7 +1,7 @@
 import express from 'express';
 import { AuctionItemModel } from '../models/AuctionItem.js';
 import { verifyToken } from './user.js'; // Import the verifyToken middleware
-
+import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 // Create a new auction item
@@ -26,13 +26,42 @@ router.post('/', verifyToken, async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   });
-
+// get auction item by id
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const auctionItem = await AuctionItemModel.findById(id).populate('owner bids');
+  
+      if (!auctionItem) return res.status(404).json({ message: 'Auction item not found' });
+  
+      res.status(200).json(auctionItem);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+});
+// Get all auction items available for specific user
+router.get('/user/available-products', async (req, res) => {
+  console.log("ENDPOINT")
+  console.log(req)
+  const token = req.headers.authorization;
+  console.log(token)
+  let user = null;
+  jwt.verify(token, "secret", (err, decoded) => {
+    if (err) return res.sendStatus(403);
+    user = { userId: decoded._id };
+    
+  });
+  const auctionItems = await AuctionItemModel.find({ owner: {$ne:user.userId} }).populate('owner bids');
+  res.status(200).json(auctionItems);
+});
 // Get all auction items
 router.get('/', async (req, res) => {
   try {
     const auctionItems = await AuctionItemModel.find().populate('owner bids');
     res.status(200).json(auctionItems);
   } catch (err) {
+
     res.status(500).json({ message: err.message });
   }
 });

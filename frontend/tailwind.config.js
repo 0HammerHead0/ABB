@@ -18,6 +18,8 @@ export default {
       },
       backgroundImage: {
         'blue-gradient-button': 'linear-gradient(79.69deg, #1D4ED8 -0.64%, #5AD7FE 107.84%)',
+        'red-blue-gradient-button':'linear-gradient(79.69deg, #DB2721 -0.64%, #5AD7FE 107.84%)'
+
       },
     },
   },
