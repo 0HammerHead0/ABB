@@ -125,7 +125,7 @@ export function ProductPage() {
           user={user}
         />
       </div>
-      <div className="w-[80%] flex flex-row font-manrope">
+      <div className="w-[80%] flex flex-row font-manrope mt-[105px]">
         <div className=" p-3 mt-5">
           <div onClick={() => navigate("/")}  className="flex flex-row w-full text-blue-700 font-semibold mb-4 items-center cursor-pointer">
             <svg

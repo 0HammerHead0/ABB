@@ -47,7 +47,7 @@ export function Card({ card, user, loggedIn }) {
     }); // Navigate to the product description page
   }
   return (
-    <div className="shadow-xl p-3" onClick={handleCardClick}>
+    <div className="shadow-2xl p-3" onClick={handleCardClick}>
       <img src="Headphone.svg" className="rounded w-full" alt="Auction Item" />
       <h1 className="text-white bg-emerald-600 w-fit rounded text-nowrap my-2 px-2 py-1">
         Live Auction

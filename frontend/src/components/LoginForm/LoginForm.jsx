@@ -101,7 +101,7 @@ export function LoginForm() {
           <img src="container.svg" className="mt-[20px]" />
           <div className="flex items-center justify-center mt-[10px] font-normal">
             Don't have an Account?{" "}
-            <a href="#" className="text-blue-500 ml-[5px]">
+            <a href="/signup" className="text-blue-500 ml-[5px]">
               Sign up here
             </a>
           </div>
