@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export function LoginForm() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     document.getElementById("login-password").addEventListener("input", () => {
       document.getElementById("login-password-field").style.opacity = 0;
@@ -101,7 +101,7 @@ export function LoginForm() {
           <img src="container.svg" className="mt-[20px]" />
           <div className="flex items-center justify-center mt-[10px] font-normal">
             Don't have an Account?{" "}
-            <a href="#" className="text-blue-500 ml-[5px]">
+            <a href="/signup" className="text-blue-500 ml-[5px]">
               Sign up here
             </a>
           </div>

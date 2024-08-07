@@ -4,10 +4,10 @@ export function Singup() {
   return (
     <>
       <div className="flex justify-center  border-2 border-b-gray-200">
-        <LandingPageTopBar/>
+        <LandingPageTopBar />
       </div>
       <div className="flex flex-row justify-evenly items-center h-[100vh]">
-        <SingupForm/>
+        <SingupForm />
         <img src="signup-img.svg" />
       </div>
     </>
