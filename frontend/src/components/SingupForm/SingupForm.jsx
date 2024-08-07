@@ -1,18 +1,19 @@
 import React from "react";
 import axios from "axios";
+import PasswordInput from "../passwordToggle/PasswordInput";
 export function SingupForm() {
-    async function submitForm(event) {
-        event.preventDefault();
-        const url = "http://localhost:3001/api/users/register";
-        const data = {
-            firstName: document.getElementById("signup-firstname").value,
-            lastName: document.getElementById("signup-lastname").value,
-            email: document.getElementById("signup-email").value,
-            password: document.getElementById("signup-password").value,
-            receiveOutbidEmails: document.getElementById("signup-terms").checked,
-        };
-        console.log(data)
-    }
+  async function submitForm(event) {
+    event.preventDefault();
+    const url = "http://localhost:3001/api/users/register";
+    const data = {
+      firstName: document.getElementById("signup-firstname").value,
+      lastName: document.getElementById("signup-lastname").value,
+      email: document.getElementById("signup-email").value,
+      password: document.getElementById("signup-password").value,
+      receiveOutbidEmails: document.getElementById("signup-terms").checked,
+    };
+    console.log(data);
+  }
   return (
     <>
       <div className="font-manrope text-[14px] w-[392px]">
@@ -52,20 +53,20 @@ export function SingupForm() {
           <label for="signup-password" className="font-semibold">
             Password
           </label>
-          <input
-            id="signup-password"
-            className="font-medium w-full h-[30px] rounded border-2 p-4 border-gray-400"
-            type="password"
-            placeholder="Password"
-          />
+       
+          <PasswordInput />
+
           <p className="mb-[20px] font-light">Password criteria check</p>
           <div className="flex flex-row items-center mb-[20px] font-normal">
-            <input type="checkbox" id="signup-terms" className="mr-[10px]" />
-            <label for="signup-terms" className="font-normal">
+            <input type="checkbox" id="signup-terms" className="mr-[10px] gradient-checkbox  " />
+            <label for="signup-terms" className="font-normal ">
               Receive outbid emails
             </label>
           </div>
-          <button onClick="submitForm" className="bg-blue-gradient-button font-semibold w-full h-[44px] rounded bg-blue-500 text-white">
+          <button
+            onClick="submitForm"
+            className="bg-blue-gradient-button font-semibold w-full h-[44px] rounded bg-blue-500 text-white"
+          >
             Submit
           </button>
           <img src="container.svg" className="mt-[20px]" />
