@@ -4,6 +4,7 @@
 server/node_modules
 frontend/node_modules
 server/.env
+frontend/.env
 /.pnp
 .pnp.js
 .yarn/install-state.gz
