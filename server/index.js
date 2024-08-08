@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-
+import dotenv from "dotenv";
 import { userRouter } from './src/routes/user.js';  // Import user routes
 import auctionItemRouter from './src/routes/auctionItem.js';  // Import auction item routes
 import bidRouter from './src/routes/bid.js';
+
+dotenv.config();
 
 const app = express();
 
@@ -16,7 +18,7 @@ app.use('/api/auction-items', auctionItemRouter);  // Use auction item routes
 app.use('/api/bids', bidRouter);
 try {
   mongoose.connect(
-    "mongodb+srv://shashwatakahammer:yUWyELxYLd7FxqXl@cluster0.jyn2vs1.mongodb.net/ABB?retryWrites=true&w=majority&appName=Cluster0"
+    process.env.MONGO_URL
   );
   console.log("MongoDB Connected");
 } catch (err) {
