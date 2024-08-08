@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import dotenv from "dotenv";
+import API_URL from "../../URL";
+
 export function SingupForm() {
   const navigate = useNavigate();
   async function submitForm(event) {
     event.preventDefault();
-    const url = "http://localhost:3001/api/users/register";
+    const url = `${API_URL}/api/users/register`;
     const data = {
       firstName: document.getElementById("signup-firstname").value,
       lastName: document.getElementById("signup-lastname").value,

@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import dotenv from "dotenv";
+import API_URL from "../../URL";
+
+
 export function LoginForm() {
+  // dotenv.config();
   const navigate=useNavigate();
   useEffect(() => {
     document.getElementById("login-password").addEventListener("input", () => {
@@ -13,7 +18,7 @@ export function LoginForm() {
   }, []);
   async function submitForm(event) {
     event.preventDefault();
-    const url = "http://localhost:3001/api/users/login";
+    const url = `${API_URL}/api/users/login`;
     const data = {
       email: document.getElementById("login-email").value,
       password: document.getElementById("login-password").value,
@@ -22,8 +27,6 @@ export function LoginForm() {
       .post(url, data)
       .then((response) => {
         if (response.status === 200) {
-          alert("Logged in successfully");
-          console.log("Token -> ", response.data.token);
           window.localStorage.setItem("genixToken", response.data.token);
           navigate("/");
         }

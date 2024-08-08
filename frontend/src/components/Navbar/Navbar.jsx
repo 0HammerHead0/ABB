@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import "./Navbar.css";
+import dotenv from "dotenv";
+import API_URL from "../../URL";
+
+
 export function Navbar({relPath='./', loggedIn, user }) {
   const navigate = useNavigate();
   const [viewProfileMenu, setViewProfileMenu] = useState(false);
@@ -22,16 +26,13 @@ export function Navbar({relPath='./', loggedIn, user }) {
   };
   const logOut = (e) => {
       e.preventDefault();
-      console.log("LOGGING OUT",token)
-      axios.post("http://localhost:3001/api/users/logout", {},{
+      axios.post(`${API_URL}/api/users/logout`, {},{
         headers: {
           authorization: token,
         },
     })
     .then((response) => {
-      console.log(response)
       if (response.status === 200) {
-        console.log("LOGGED OUT")
         window.localStorage.removeItem("genixToken");
         window.localStorage.removeItem("Genix-Token");
         if (window.location.pathname === "/") {
@@ -57,7 +58,6 @@ export function Navbar({relPath='./', loggedIn, user }) {
             <li>Bidding</li>
             <li>About us</li>
             <li>English</li>
-            {console.log("LOGGED IN", loggedIn, user)}
             {!loggedIn && !user ? (
               <>
                 <button onClick={logIn} className="text-blue-800 cursor-pointer">
@@ -68,13 +68,6 @@ export function Navbar({relPath='./', loggedIn, user }) {
                 </button>
               </>
             ) : (
-              // <button
-              //   className="rounded text-white bg-blue-gradient-button p-3 px-4"
-              //   onClick={logOut}
-              //   type="submit"
-              // >
-              //   Logout
-              // </button>
               <>
                 <img src={`${relPath}Avatar.png`} onClick={toggleProfileMenu} alt="User" className="w-10 h-10 cursor-pointer" />
                 <div className={`profile-menu block fixed top-[105px] right-[10%] bg-white w-fit px-3 rounded font-manrope text-[14px] font-light shadow-lg border-[1px] border-gray-300 ${viewProfileMenu ? "show" : "hidden"}`}>

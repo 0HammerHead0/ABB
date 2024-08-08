@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
-
+import dotenv from "dotenv";
 export function SubmitBidding({onClose}) {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export function SubmitBidding({onClose}) {
   async function fetchProduct() {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/auction-items/${id}`
+        `${API_URL}/api/auction-items/${id}`
       );
       setProduct(response.data);
       setTimeRemaining(formatTimeRemaining(response.data.endDate));
@@ -72,7 +72,7 @@ export function SubmitBidding({onClose}) {
       return;
     }
     axios
-      .post(`http://localhost:3001/api/bids`, {
+      .post(`${API_URL}/api/bids`, {
         amount: bid,
         auctionItem: id,
       },{

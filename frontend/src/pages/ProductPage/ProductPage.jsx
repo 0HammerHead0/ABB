@@ -19,17 +19,16 @@ export function ProductPage() {
   async function fetchProduct() {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/auction-items/${id}`
+        `${API_URL}/api/auction-items/${id}`
       );
       setProduct(response.data);
       setTimeRemaining(formatTimeRemaining(response.data.endDate));
 
       const bidsResponse = await axios.get(
-        `http://localhost:3001/api/bids/auction-item/${id}`
+        `${process.env.API_URL}/api/bids/auction-item/${id}`
       );
       const bidsData = bidsResponse.data;
 
-      // Map to track the highest bid for each bidder
       const bidderMap = new Map();
       bidsData.forEach((bid) => {
         const bidder = bid.bidder;
@@ -41,7 +40,6 @@ export function ProductPage() {
         }
       });
 
-      // Convert map to array and sort to place the self user at the top
       let sortedBidders = Array.from(bidderMap.values());
       if (user?._id) {
         const selfBidderIndex = sortedBidders.findIndex(

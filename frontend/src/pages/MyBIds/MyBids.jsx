@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import dotenv from "dotenv";
 export function MyBids() {
   const [bids, setBids] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ export function MyBids() {
   useEffect(() => {
     const fetchBids = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/bids/user-bids", {
+        const response = await axios.get(`${API_URL}/api/bids/user-bids`, {
           headers: { authorization: token },
         });
         setBids(response.data);
